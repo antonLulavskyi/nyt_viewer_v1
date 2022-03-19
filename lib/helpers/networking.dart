@@ -16,10 +16,8 @@ class Networking {
     http.Response response = await http.get(passedUrl);
     
     if (response.statusCode == 200) {
-      print('Working');
       return Content.fromJson(jsonDecode(response.body));
     } else {
-      print('Not working');
       throw Exception('Failed to load data');
     }
   }
