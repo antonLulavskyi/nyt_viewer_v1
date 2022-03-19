@@ -17,11 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
         //primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(),
+      home: const Newsfeed(),
     );
   }
 }
@@ -36,19 +37,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedBottonNavigationIndex = 0;
+  //int _selectedBottonNavigationIndex = 0;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedBottonNavigationIndex = index;
-    });
-  }
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedBottonNavigationIndex = index;
+  //   });
+  // }
 
-  final List<Widget> _pages = [
-      Newsfeed(),
-      Favorites(),
-      Settings(),
-    ];
+  // final List<Widget> _pages = [
+  //     const Newsfeed(),
+  //     const Favorites(),
+  //     const Settings(),
+  //   ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,22 +58,22 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('NYT Viewer'),
       ),
       body: Center(
-        child: _pages.elementAt(_selectedBottonNavigationIndex),
+        child: Text('hello'),//_pages.elementAt(_selectedBottonNavigationIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedBottonNavigationIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.book_rounded), label: 'Newsfeed'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_rounded), label: 'Favorites'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: 'Sittings'),
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   currentIndex: _selectedBottonNavigationIndex,
+      //   onTap: _onItemTapped,
+      //   selectedItemColor: Colors.white,
+      //   unselectedItemColor: Colors.grey,
+      //   items: const [
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.book_rounded), label: 'Newsfeed'),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.favorite_rounded), label: 'Favorites'),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.settings), label: 'Sittings'),
+      //   ],
+      // ),
     );
   }
 }
