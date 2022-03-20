@@ -26,6 +26,7 @@ class _NewsfeedState extends State<Newsfeed> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SizedBox(
         width: screenSize.width,
@@ -33,29 +34,34 @@ class _NewsfeedState extends State<Newsfeed> {
         child: FutureBuilder<Content>(
           future: content,
           builder: (context, snapshot) {
-            final listOfResults = snapshot.data!.results!;
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: listOfResults.length,
+              return (snapshot.hasData) ? ListView.builder(
+                itemCount: snapshot.data!.results!.length,
                 itemBuilder: (context, index) {
-                  var imageDataPath = listOfResults[index].media![2].url!;
+                  String imageDataPath = '';
+                  int mediaIndex;
+
+                  // If a server respond without an image - render a default one.
+                  if (snapshot.data!.results![index].media != null) {
+                    mediaIndex = 3;
+                    imageDataPath =
+                        snapshot.data!.results![index].media![mediaIndex].url!;
+                  } else {
+                    imageDataPath =
+                        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png';
+                  }
                   return NewsfeedItem(
                     index: index,
                     imagePath: imageDataPath,
-                    listOfResults: listOfResults,
+                    listOfResults: snapshot.data!.results!,
                   );
                 },
-              );
-            } else if (snapshot.hasError) {
-              return Text('${snapshot.error}');
-            }
-            return const SizedBox(
+              ) : const SizedBox(
               height: 40,
               width: 40,
               child: Center(
-                child: LinearProgressIndicator(),
+                child: CircularProgressIndicator(),
               ),
-            );
+             );
           },
         ),
       ),

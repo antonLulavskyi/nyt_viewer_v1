@@ -32,8 +32,13 @@ class Result {
   Result.fromJson(Map<String, dynamic> json) {
     section = json['section'];
     subsection = json['subsection'];
-    title = json['title'];
-    bodyText = json['abstract'];
+    if (json['title'] != null) {
+      title = json['title'];
+    }
+    if (json['abstract'] != null) {
+      bodyText = json['abstract'];
+    }
+    
     publishedDate = json['published_date'];
     var listOfMedia = json['multimedia'];
     if (listOfMedia != null) {
@@ -42,6 +47,7 @@ class Result {
        media!.add(Media.fromJson(mediaElement));
       }
     }
+    //print('List of Media - ${media!.length}');
   }
 }
 
@@ -51,7 +57,12 @@ class Media {
 
   Media({this.url, this.caption});
   Media.fromJson(Map<String, dynamic> json) {
-    url = json['url'];
-    caption = json['caption'];
+    if (json['url'] != null) {
+      url = json['url'];
+    }
+    if (json['caption'] != null) {
+      caption = json['caption'];
+    }
+    
   }
 }
