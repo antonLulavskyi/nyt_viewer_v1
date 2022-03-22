@@ -37,9 +37,9 @@ class _NewsfeedState extends State<Newsfeed> {
               return (snapshot.hasData) ? ListView.builder(
                 itemCount: snapshot.data!.results!.length,
                 itemBuilder: (context, index) {
+                  Content availibleData = snapshot.data!;
                   String imageDataPath = '';
                   int mediaIndex;
-
                   // If a server respond without an image - render a default one.
                   if (snapshot.data!.results![index].media != null) {
                     mediaIndex = 3;
@@ -52,7 +52,8 @@ class _NewsfeedState extends State<Newsfeed> {
                   return NewsfeedItem(
                     index: index,
                     imagePath: imageDataPath,
-                    listOfResults: snapshot.data!.results!,
+                    data: availibleData
+                    //listOfResults: snapshot.data!.results!,
                   );
                 },
               ) : const SizedBox(

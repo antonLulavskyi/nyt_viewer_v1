@@ -2,6 +2,7 @@
 class Content {
   int? numberOfResult;
   List<Result>? results;
+  
 
   Content({this.numberOfResult, this.results});
 
@@ -14,7 +15,6 @@ class Content {
         results!.add(Result.fromJson(result));
       }
     }
-    //print(results);
   }
 
 }
@@ -26,6 +26,7 @@ class Result {
   String? bodyText;
   String? publishedDate;
   List<Media>? media;
+  bool isFavorite = false;
 
   Result({this.section, this.subsection, this.title, this.bodyText, this.publishedDate, this.media});
 
