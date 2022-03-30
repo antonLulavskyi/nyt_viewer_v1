@@ -24,3 +24,4 @@
 # Additional Features:
 
 1. Responsivnes (Web version).
+2. Reorganazing code and start using Provider.
